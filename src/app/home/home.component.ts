@@ -1,34 +1,29 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import { PropertiesService } from '../services/properties.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
 
-  properties = [
-    {
-      title: 'Ma Super Maison',
-      category: 'Maison',
-      sold: true
-    },
-    {
-      title: 'Mon Super Petit Appartement',
-      category: 'Appartement',
-      sold: false
-    },
-    {
-      title: 'Ma Super Belle Villa',
-      category: 'Maison',
-      sold: true
-    }
+  properties = [];
+  propertiesSubscription: Subscription;
 
-  ];
+  constructor(
+    private propertiesService: PropertiesService
+  ) { }
 
-  constructor() { }
-
-  ngOnInit(): void {
+  ngOnInit() {
+    this.propertiesSubscription = this.propertiesService.propertiesSubject.subscribe(
+      (data: any) => {
+        this.properties = data;
+      }
+    );
+    this.propertiesService.getProperties();
+    this.propertiesService.emitProperties();
   }
 
   getSoldValue(index) {
@@ -39,5 +34,8 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  ngOnDestroy(): void {
+    this.propertiesSubscription.unsubscribe();
+  }
 
 }

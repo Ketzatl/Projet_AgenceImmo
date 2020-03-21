@@ -21,7 +21,6 @@ export class HeaderComponent implements OnInit {
   }
 
   onClick() {
-    alert('Pouet Pouet !!')
     this.isDisabled = false;
   }
 
