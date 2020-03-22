@@ -9,7 +9,7 @@ export class HeaderComponent implements OnInit {
 
   title = 'Ma Super Agence';
 
-  isDisabled = true;
+  isDisabled = false;
 
 
 
@@ -22,6 +22,10 @@ export class HeaderComponent implements OnInit {
 
   onClick() {
     this.isDisabled = false;
+  }
+
+  ilClick() {
+    alert('Youhouhouh !!');
   }
 
 }
