@@ -22,11 +22,16 @@
       <p *ngIf="property.price && property.price !== '' ">
          {{ property.price }} €
       </p>
+      <p>
+        <span *ngIf="property.sold" class="text-success">Vendu !</span>
+        <span *ngIf="!property.sold" class="text-danger">A Vendre !</span>
+      </p>
     </div>
   </div>
 </div>
 
-<!-- Modal -->
+<!-- Modal  -->
+
 <div class="modal fade" id="propertiesFormModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
