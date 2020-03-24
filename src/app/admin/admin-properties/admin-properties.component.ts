@@ -3,7 +3,7 @@ import {FormBuilder, FormGroup, NgForm, Validators} from '@angular/forms';
 import {PropertiesService} from '../../services/properties.service';
 import {Subscription} from 'rxjs';
 import * as $ from 'jquery';
-import {Property} from '../../inrefaces/property';
+import {Property} from '../../interfaces/property';
 /*import {privateDecrypt} from "crypto";*/
 
 @Component({
