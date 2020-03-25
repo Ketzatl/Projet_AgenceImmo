@@ -4,7 +4,8 @@ import {PropertiesService} from 'src/app/services/properties.service';
 import {Subscription} from 'rxjs';
 import * as $ from 'jquery';
 import {Property} from 'src/app/interfaces/property';
-/*import {privateDecrypt} from "crypto";*/
+
+
 
 @Component({
   selector: 'app-admin-properties',
