@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Property } from '../interfaces/property';
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class PropertiesService {
 
-  properties = Property[];
+  properties: Property[] = [];
 
   propertiesSubject = new Subject<Property[]>();
 

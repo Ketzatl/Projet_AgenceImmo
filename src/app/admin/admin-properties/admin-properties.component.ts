@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, NgForm, Validators} from '@angular/forms';
-import {PropertiesService} from '../../services/properties.service';
+import {PropertiesService} from 'src/app/services/properties.service';
 import {Subscription} from 'rxjs';
 import * as $ from 'jquery';
-import {Property} from '../../interfaces/property';
+import {Property} from 'src/app/interfaces/property';
 /*import {privateDecrypt} from "crypto";*/
 
 @Component({
@@ -34,6 +34,7 @@ export class AdminPropertiesComponent implements OnInit {
         this.properties = data;
       }
     );
+    this.propertiesService.getProperties();
     this.propertiesService.emitProperties();
   }
 
@@ -43,7 +44,7 @@ export class AdminPropertiesComponent implements OnInit {
       category: ['', Validators.required],
       surface: ['', Validators.required],
       rooms: ['', Validators.required],
-      description: ['', Validators.required],
+      description: '',
       price: ['', Validators.required],
       sold: ''
     });
@@ -52,6 +53,7 @@ export class AdminPropertiesComponent implements OnInit {
 
   onSubmitPropertiesForm() {
     const newProperty: Property = this.propertiesForm.value;
+    newProperty.sold = this.propertiesForm.get('sold').value ? this.propertiesForm.get('sold').value : false;
     if (this.editMode) {
       this.propertiesService.updateProperty(newProperty, this.indexToUpdate);
     } else {
