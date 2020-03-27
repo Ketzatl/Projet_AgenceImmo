@@ -80,8 +80,11 @@ export class AdminPropertiesComponent implements OnInit {
   }
 
   onConfirmDeleteproperty() {
-   this.propertiesService.deleteProperty(this.indexToRemove);
-   $('#deletePropertyModal').modal('hide');
+      if (this.properties[this.indexToRemove].photo && this.properties[this.indexToRemove].photo !== '') {
+        this.propertiesService.removeFile(this.properties[this.indexToRemove].photo);
+      }
+      this.propertiesService.deleteProperty(this.indexToRemove);
+      $('#deletePropertyModal').modal('hide');
   }
 
   onEditProperty(property: Property) {
@@ -110,6 +113,9 @@ export class AdminPropertiesComponent implements OnInit {
     this.photoUploading = true;
     this.propertiesService.uploadFile(event.target.files[0]).then(
       (url: string) => {
+        if (this.photoUrl && this.photoUrl !== '') {
+          this.propertiesService.removeFile(this.photoUrl);
+        }
         this.photoUrl = url;
         this.photoUploading = false;
         this.photoUploaded = true;
