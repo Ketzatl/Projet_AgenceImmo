@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Property } from '../interfaces/property';
 import * as firebase from 'firebase';
+import {newArray} from '@angular/compiler/src/util';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +28,22 @@ export class PropertiesService {
       this.properties = data.val() ? data.val() : [];
       this.emitProperties();
     });
+  }
+
+  getSingleProperties(id) {
+    return new Promise(
+      (resolve, reject) => {
+        firebase.database().ref('/properties/' + id).once('value').then(
+          (data) => {
+            resolve(data.val());
+          }
+        ).catch(
+          (error) => {
+            reject(error);
+          }
+        );
+      }
+    );
   }
 
   createProperty(property: Property) {
