@@ -1,12 +1,12 @@
 <div class="container py-5" *ngIf="property">
   <h1 class="display-4 mb-0">{{ property.title }}</h1>
   <hr class="bg-dark mb-4 mt-2">
-  <div class="row">
-    <div class="col-md-6">
+  <div  >
+    <div class="col-md-6 mb-4">
 
       <div *ngIf="property.photos.length === 1">
         <div *ngFor="let photo of property.photos; let first = first">
-          <img [src]="photo" *ngIf="first" class="w-100">
+          <img [src]="photo" *ngIf="first" class="w-100 shadow-lg rounded-lg">
 
         </div>
 
@@ -15,10 +15,10 @@
       <!-- ----------- Caroussel --------------------- -->
 
       <div *ngIf="property.photos.length > 1">
-        <div id="carouselExampleControls" class="carousel slide bg-dark" data-ride="carousel">
+        <div id="carouselExampleControls" class="carousel slide bg-dark shadow-lg rounded-lg" data-ride="carousel">
           <div class="carousel-inner">
             <div class="carousel-item" *ngFor="let photo of property.photos; let first = first" [ngClass]="{'active': first}" >
-              <img [src]="photo" class="d-block w-100">
+              <img [src]="photo" class="d-block w-100 shadow-lg rounded">
             </div>
           </div>
           <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
